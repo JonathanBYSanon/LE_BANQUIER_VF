@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="LE_BANQUIER_VF.Resource.Element.Briefcase"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LE_BANQUIER_VF.Resource.Element"
+             mc:Ignorable="d" ClipToBounds="True">
+    
+    <Grid Margin="5">
+        <Image Source="{Binding IsOpened, Converter={StaticResource BriefcaseImageConverter}}" Stretch="Uniform"/>
+
+        <TextBlock Text="{Binding Number}" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   FontWeight="Bold" FontSize="25" Foreground="DarkRed"
+                   Visibility="{Binding IsOpened, Converter={StaticResource BooleanToVisibilityInverseConverter}}"/>
+
+        <TextBlock Text="{Binding Prize.Amount, StringFormat=$\{0:0\}}" 
+           HorizontalAlignment="Center" 
+           VerticalAlignment="Center" 
+           FontWeight="ExtraBold" 
+           FontSize="35"
+           Foreground="Gold"
+           Visibility="{Binding IsOpened, Converter={StaticResource BooleanToVisibilityConverter}, NotifyOnTargetUpdated=True}">
+
+            <!-- Ombre portée pour améliorer la lisibilité -->
+            <TextBlock.Effect>
+                <DropShadowEffect ShadowDepth="0" Color="Black" BlurRadius="15" Opacity="0.7" />
+            </TextBlock.Effect>
+
+            <!-- Dégradé pour un effet brillant
+            <TextBlock.Foreground>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="Gold" Offset="0.0" />
+                    <GradientStop Color="White" Offset="0.5" />
+                    <GradientStop Color="Gold" Offset="1.0" />
+                </LinearGradientBrush>
+            </TextBlock.Foreground> -->
+
+            <!-- Animations -->
+            <TextBlock.Triggers>
+                <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <!-- Animation d'opacité -->
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                     From="0" To="1" Duration="0:0:2" />
+                            <!-- Animation de taille pour un effet d'apparition -->
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                     From="20" To="40" Duration="0:0:3" />
+                            <!-- Animation de translation pour un effet de montée -->
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                                     From="20" To="0" Duration="0:0:3" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </TextBlock.Triggers>
+
+            <!-- Transformation pour gérer la translation -->
+            <TextBlock.RenderTransform>
+                <TranslateTransform />
+            </TextBlock.RenderTransform>
+        </TextBlock>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="LE_BANQUIER_VF.Resource.Element.GameProgress"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LE_BANQUIER_VF.Resource.Element"
+             mc:Ignorable="d" 
+             Height="100">
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <!-- Texte pour indiquer le round actuel -->
+            <TextBlock Text="{Binding Round, StringFormat='Round : {0}/25'}" 
+                       FontSize="16" 
+                       FontWeight="Bold" 
+                       Foreground="White"
+                       HorizontalAlignment="Center" />
+
+            <ProgressBar Minimum="0"
+                         Maximum="25"
+                         Value="{Binding Round}"
+                         Height="20"
+                         Width="400"
+                         Background="Transparent"
+                         BorderBrush="#8561c5">
+
+                <!-- Dégradé pour le Foreground -->
+                <ProgressBar.Foreground>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#493971" Offset="0.0" />
+                        <GradientStop Color="#8561c5" Offset="1.0" />
+                    </LinearGradientBrush>
+                </ProgressBar.Foreground>
+
+                <!-- Animation -->
+                <ProgressBar.Triggers>
+                    <EventTrigger RoutedEvent="ProgressBar.ValueChanged">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Value"
+                                     Duration="0:0:1">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseInOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </ProgressBar.Triggers>
+            </ProgressBar>
+
+
+            <!-- Indication spéciale pour les rounds d'offre -->
+            <TextBlock Text="{Binding IsOfferRound, Converter={StaticResource BooleanToTextConverter}}" 
+                       FontSize="14" 
+                       FontStyle="Italic" 
+                       Foreground="Gold" 
+                       HorizontalAlignment="Center" />
+        </StackPanel>
+    </Grid>
+</UserControl>

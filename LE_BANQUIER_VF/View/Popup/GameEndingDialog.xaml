@@ -1,0 +1,114 @@
+﻿<Window x:Class="LE_BANQUIER_VF.View.Popup.GameEndingDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LE_BANQUIER_VF.View.Popup"
+        xmlns:Element="clr-namespace:LE_BANQUIER_VF.Resource.Element"
+        mc:Ignorable="d" FontFamily="Segoe UI"
+        Title="GameEndingDialog" Height="700" Width="600"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" 
+        WindowStyle="None" Background="Transparent" AllowsTransparency="True">
+
+    <Window.Resources>
+        <!-- Animation de fade-in -->
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                         From="0" To="1" Duration="0:0:0.5" />
+        </Storyboard>
+
+        <!-- Animation de fade-out -->
+        <Storyboard x:Key="FadeOutStoryboard">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                         From="1" To="0" Duration="0:0:0.5" />
+        </Storyboard>
+    </Window.Resources>
+    
+    <Border Background="#312D4B" CornerRadius="20" 
+            BorderBrush="Gold" BorderThickness="5">
+        <Grid>
+            <!-- Définition des lignes de la grille -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <!-- Ligne vide pour futur contenu -->
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- ESPACE VIDE (à remplir plus tard) -->
+            <Grid Grid.Row="0">
+                <Element:Briefcase DataContext="{Binding Briefcase}" 
+                                   Width="150" Height="150" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!-- Titre -->
+            <TextBlock Grid.Row="1" Text="🏆 Résumé de la Partie 🏆" 
+                       FontSize="30" FontWeight="Bold" Foreground="Gold" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <!-- Contenu du résumé de la partie -->
+            <Grid Grid.Row="2" Background="#1E1B3A">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0" 
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Joueur: " FontSize="18" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="{Binding Resume.PlayerName}" FontSize="18" Foreground="Gold"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="1" 
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Mallette choisie: " FontSize="18" FontWeight="Bold" 
+                               Foreground="White"/>
+                    <TextBlock Text="{Binding Resume.ChosenBriefcase}" FontSize="18" Foreground="Gold"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="Meilleure offre: " FontSize="18" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="{Binding Resume.HighestOffer}" FontSize="18" Foreground="LimeGreen"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" 
+                            VerticalAlignment="Center">
+                    <TextBlock Text="Gain final: " FontSize="22" FontWeight="Bold" Foreground="Gold"/>
+                    <TextBlock Text="{Binding Resume.FinalPrize}" FontSize="22" Foreground="Gold"/>
+                </StackPanel>
+
+                <TextBlock Text="Offres du banquier $:" Grid.Row="4" FontSize="18" FontWeight="Bold" 
+                           Foreground="White" VerticalAlignment="Center"/>
+                <ListBox ItemsSource="{Binding Resume.BankerOffers}" Grid.Row="5" Background="Black" 
+                         Foreground="White" BorderBrush="Gold" BorderThickness="1">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontSize="16" Foreground="White"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="6" HorizontalAlignment="Center" 
+                            VerticalAlignment="Center">
+                    <TextBlock Text="Nombre de tours joués: " FontSize="18" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="{Binding Resume.TotalRoundsPlayed, StringFormat=' {0}/25'}" FontSize="18" Foreground="Gold"/>
+                </StackPanel>
+            </Grid>
+            
+            <!-- Boutons de contrôle -->
+            <Button Content="❌ Fermer" Width="160" Height="50" FontSize="18" 
+                    Background="LimeGreen" Grid.Row="3"
+                    Foreground="White" FontWeight="Bold" 
+                    Command="{Binding CloseCommand}"/>
+
+        </Grid>
+    </Border>
+</Window>
