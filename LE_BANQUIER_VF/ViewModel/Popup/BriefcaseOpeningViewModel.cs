@@ -43,19 +43,8 @@ namespace LE_BANQUIER_VF.ViewModel.Popup
         private void CloseDialog(object parameter)
         {
             var fadeOut = (Storyboard)DialogWindow.Resources["FadeOutStoryboard"];
-            fadeOut.Completed += (s, _) =>
-            {
-                if(Briefcase.IsOpened)
-                {
-                    DialogWindow.DialogResult = true;
-                }
-                else
-                {
-                    DialogWindow.DialogResult = false;
-                }
-            };
+            fadeOut.Completed += (s, _) => DialogWindow.Close();
             fadeOut.Begin(DialogWindow);
-            
         }
     }
 }

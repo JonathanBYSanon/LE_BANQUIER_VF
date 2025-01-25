@@ -137,9 +137,9 @@ namespace LE_BANQUIER_VF.ViewModel
         private void onBriefcaseOpening()
         {
             BriefcaseOpeningDialog dialog1 = new BriefcaseOpeningDialog(SelectedBriefcase, Host, getRemainingPrizes());
-            bool result = dialog1.ShowDialog() ?? false;
+           dialog1.ShowDialog();
 
-            if (result) nextRound();
+            if (SelectedBriefcase.IsOpened) nextRound();
             else Host.Message = MessageGeneratorService.GetCancelBriefcaseEliminationMessage();
         }
         private void onOfferMaking()
