@@ -21,7 +21,7 @@
                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
                                     To="LightGray" 
                                     Duration="0:0:0.5"
-                                    BeginTime="0:0:3"/>
+                                    BeginTime="0:0:2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </DataTrigger.EnterActions>

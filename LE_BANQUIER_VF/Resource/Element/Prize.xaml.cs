@@ -55,7 +55,7 @@ namespace LE_BANQUIER_VF.Resource.Element
                 From = 0,
                 To = 180,
                 Duration = new Duration(TimeSpan.FromSeconds(0.5)),
-                BeginTime = TimeSpan.FromSeconds(3),
+                BeginTime = TimeSpan.FromSeconds(2),
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
 
@@ -74,7 +74,7 @@ namespace LE_BANQUIER_VF.Resource.Element
                 To = 1.5,
                 Duration = new Duration(TimeSpan.FromSeconds(0.3)),
                 AutoReverse = true,
-                BeginTime = TimeSpan.FromSeconds(3),
+                BeginTime = TimeSpan.FromSeconds(2),
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut }
             };
 
