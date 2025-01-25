@@ -12,6 +12,7 @@ namespace LE_BANQUIER_VF.ViewModel
 {
     public class GameViewModel : BaseViewModel
     {
+        private bool isOver = false;
         // The list of briefcases
         private ObservableCollection<Briefcase> _briefcases;
         // The list of prizes
@@ -164,6 +165,7 @@ namespace LE_BANQUIER_VF.ViewModel
             dialog5.ShowDialog();
 
             leave(null);
+            isOver = true;
         }
         private void nextRound()
         {
@@ -173,8 +175,9 @@ namespace LE_BANQUIER_VF.ViewModel
                 if(dialog6.ShowDialog() ?? false)
                 {
                     onOfferMaking();
+                    if (isOver) return;
 
-                    if(GameProgressService.Instance.Round < 24) Host.Message = MessageGeneratorService.GetPlayerDecisionReaction();
+                    if (GameProgressService.Instance.Round < 24) Host.Message = MessageGeneratorService.GetPlayerDecisionReaction();
                 }
             }
             else if(GameProgressService.Instance.Round != 0)

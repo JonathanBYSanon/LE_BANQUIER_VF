@@ -1,5 +1,6 @@
 ﻿using LE_BANQUIER_VF.Core;
 using LE_BANQUIER_VF.Model;
+using LE_BANQUIER_VF.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,11 @@ namespace LE_BANQUIER_VF.ViewModel.Popup
         private void close(object parameter)
         {
             var fadeOut = (Storyboard)DialogWindow.Resources["FadeOutStoryboard"];
-            fadeOut.Completed += (s, _) => DialogWindow.Close();
+            fadeOut.Completed += (s, _) =>
+            {
+                SoundManagerService.Instance.StopEffect();
+                DialogWindow.Close();
+            };
             fadeOut.Begin(DialogWindow);
         }
 
