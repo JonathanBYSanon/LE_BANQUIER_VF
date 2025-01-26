@@ -70,7 +70,7 @@
                 <ListView.ItemTemplate >
                     <!-- BriefcaseControl utilisé pour chaque mallette -->
                     <DataTemplate >
-                        <Element:Briefcase DataContext="{Binding}" MinWidth="150"
+                        <Element:Briefcase DataContext="{Binding}" MinWidth="100"
                                            Visibility="{Binding IsOpened, Converter={StaticResource BooleanToVisibilityInverseConverter}}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>

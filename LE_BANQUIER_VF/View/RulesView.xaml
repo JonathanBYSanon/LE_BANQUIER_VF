@@ -23,91 +23,93 @@
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Grid.Row="0"/>
-
+        
         <!-- Rules Section -->
         <Border Background="Transparent" BorderBrush="Gold" 
                 BorderThickness="2" CornerRadius="10"
                 Padding="40" Grid.Row="1">
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="900" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="900" >
 
-                <!-- Rule 1 -->
-                <TextBlock Text="1️ - Sélection de la mallette"
+                    <!-- Rule 1 -->
+                    <TextBlock Text="1️ - Sélection de la mallette"
                            FontSize="28"
                            Foreground="Gold"
                            FontWeight="Bold"
                            TextAlignment="Center"/>
-                <TextBlock Text="Vous commencez par choisir votre mallette que vous garderez jusqu'au dernier tour."
-                           FontSize="24"
-                           Foreground="White"
-                           TextWrapping="Wrap"
-                           TextAlignment="Left"
-                           Margin="0,0,0,20"/>
-
-                <!-- Rule 2 -->
-                <TextBlock Text="2️ - Ouverture des mallettes"
-                           FontSize="28"
-                           Foreground="Gold"
-                           FontWeight="Bold"
-                           TextAlignment="Center"/>
-                <TextBlock Text="Vous devrez ouvrir 24 mallettes pour révéler les montants qu'elles contiennent. Les montants retirés seront affichés et ne feront plus partie des options disponibles."
+                    <TextBlock Text="Vous commencez par choisir votre mallette que vous garderez jusqu'au dernier tour."
                            FontSize="24"
                            Foreground="White"
                            TextWrapping="Wrap"
                            TextAlignment="Left"
                            Margin="0,0,0,20"/>
 
-                <!-- Rule 3 -->
-                <TextBlock Text="3️ - Offres du banquier"
+                    <!-- Rule 2 -->
+                    <TextBlock Text="2️ - Ouverture des mallettes"
                            FontSize="28"
                            Foreground="Gold"
                            FontWeight="Bold"
                            TextAlignment="Center"/>
-                <TextBlock Text="Le banquier vous fera des offres à certains moments basées sur les montants restants. Vous pouvez accepter l'offre ou continuer à jouer."
+                    <TextBlock Text="Vous devrez ouvrir 24 mallettes pour révéler les montants qu'elles contiennent. Les montants retirés seront affichés et ne feront plus partie des options disponibles."
                            FontSize="24"
                            Foreground="White"
                            TextWrapping="Wrap"
                            TextAlignment="Left"
                            Margin="0,0,0,20"/>
 
-                <!-- Rule 4 -->
-                <TextBlock Text="4️ - Décision finale"
+                    <!-- Rule 3 -->
+                    <TextBlock Text="3️ - Offres du banquier"
                            FontSize="28"
                            Foreground="Gold"
                            FontWeight="Bold"
                            TextAlignment="Center"/>
-                <TextBlock Text="Si vous refusez toutes les offres et que vous atteignez le dernier tour, vous aurez le choix entre garder votre malette ou l'echanger avec la malette restante."
+                    <TextBlock Text="Le banquier vous fera des offres à certains moments basées sur les montants restants. Vous pouvez accepter l'offre ou continuer à jouer."
                            FontSize="24"
                            Foreground="White"
                            TextWrapping="Wrap"
                            TextAlignment="Left"
                            Margin="0,0,0,20"/>
 
-                <!-- Rule 4 -->
-                <TextBlock Text="5 - Gain"
+                    <!-- Rule 4 -->
+                    <TextBlock Text="4️ - Décision finale"
                            FontSize="28"
                            Foreground="Gold"
                            FontWeight="Bold"
                            TextAlignment="Center"/>
-                <TextBlock Text="Vous gagnez soit l'offre accepté en milieu de jeu ou le montant de la mallete que vous avez choisis au dernier tour."
+                    <TextBlock Text="Si vous refusez toutes les offres et que vous atteignez le dernier tour, vous aurez le choix entre garder votre malette ou l'echanger avec la malette restante."
                            FontSize="24"
                            Foreground="White"
                            TextWrapping="Wrap"
                            TextAlignment="Left"
                            Margin="0,0,0,20"/>
-                
-                <!-- Objective -->
-                <TextBlock Text="🎯 Objectif"
+
+                    <!-- Rule 4 -->
+                    <TextBlock Text="5 - Gain"
                            FontSize="28"
                            Foreground="Gold"
                            FontWeight="Bold"
                            TextAlignment="Center"/>
-                <TextBlock Text="Gagnez le montant le plus élevé en prenant les bonnes décisions au bon moment."
+                    <TextBlock Text="Vous gagnez soit l'offre accepté en milieu de jeu ou le montant de la mallete que vous avez choisis au dernier tour."
                            FontSize="24"
                            Foreground="White"
                            TextWrapping="Wrap"
                            TextAlignment="Left"
                            Margin="0,0,0,20"/>
-            </StackPanel>
+
+                    <!-- Objective -->
+                    <TextBlock Text="🎯 Objectif"
+                           FontSize="28"
+                           Foreground="Gold"
+                           FontWeight="Bold"
+                           TextAlignment="Center"/>
+                    <TextBlock Text="Gagnez le montant le plus élevé en prenant les bonnes décisions au bon moment."
+                           FontSize="24"
+                           Foreground="White"
+                           TextWrapping="Wrap"
+                           TextAlignment="Left"
+                           Margin="0,0,0,20"/>
+                </StackPanel>
+            </ScrollViewer>
         </Border>
 
         <!-- Back Button -->
