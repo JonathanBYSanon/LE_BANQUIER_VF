@@ -3,7 +3,7 @@
     
     <!-- Style pour les boutons d'acceptation/confirmation -->
     <Style x:Key="ConfirmButtonStyle" TargetType="Button">
-        <Setter Property="Background" Value="Green" />
+        <Setter Property="Background" Value="DarkGreen" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Padding" Value="10,5" />
@@ -40,7 +40,7 @@
 
     <!-- Style pour les boutons de refus/annulation -->
     <Style x:Key="CancelButtonStyle" TargetType="Button">
-        <Setter Property="Background" Value="Red" />
+        <Setter Property="Background" Value="DarkRed" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Padding" Value="10,5" />
@@ -62,7 +62,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="DarkRed" />
+                            <Setter Property="Background" Value="Red" />
                             <Setter Property="BorderBrush" Value="Firebrick" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
@@ -80,7 +80,7 @@
         <Setter Property="Padding" Value="15,10"/>
         <Setter Property="Foreground" Value="Brown"/>
         <Setter Property="Background" Value="Gold"/>
-        <Setter Property="BorderBrush" Value="DarkBlue"/>
+        <Setter Property="BorderBrush" Value="#493971"/>
         <Setter Property="BorderThickness" Value="4"/>
         <Setter Property="Margin" Value="10" />
         <Setter Property="Width" Value="300"/>

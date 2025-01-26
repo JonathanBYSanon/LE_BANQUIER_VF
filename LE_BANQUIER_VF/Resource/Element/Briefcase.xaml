@@ -10,7 +10,7 @@
         <Image Source="{Binding IsOpened, Converter={StaticResource BriefcaseImageConverter}}" Stretch="Uniform"/>
 
         <TextBlock Text="{Binding Number}" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                   FontWeight="Bold" FontSize="25" Foreground="DarkRed"
+                   FontWeight="ExtraBold" FontSize="30" Foreground="DarkRed"
                    Visibility="{Binding IsOpened, Converter={StaticResource BooleanToVisibilityInverseConverter}}"/>
 
         <TextBlock Text="{Binding Prize.Amount, StringFormat=$\{0:0\}}" 
@@ -26,15 +26,6 @@
                 <DropShadowEffect ShadowDepth="0" Color="Black" BlurRadius="15" Opacity="0.7" />
             </TextBlock.Effect>
 
-            <!-- Dégradé pour un effet brillant
-            <TextBlock.Foreground>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="Gold" Offset="0.0" />
-                    <GradientStop Color="White" Offset="0.5" />
-                    <GradientStop Color="Gold" Offset="1.0" />
-                </LinearGradientBrush>
-            </TextBlock.Foreground> -->
-
             <!-- Animations -->
             <TextBlock.Triggers>
                 <EventTrigger RoutedEvent="Binding.TargetUpdated">
@@ -42,13 +33,13 @@
                         <Storyboard>
                             <!-- Animation d'opacité -->
                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                     From="0" To="1" Duration="0:0:2" />
+                                     From="0" To="1" Duration="0:0:1" />
                             <!-- Animation de taille pour un effet d'apparition -->
                             <DoubleAnimation Storyboard.TargetProperty="FontSize"
-                                     From="20" To="40" Duration="0:0:3" />
+                                     From="20" To="40" Duration="0:0:1" />
                             <!-- Animation de translation pour un effet de montée -->
                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                     From="20" To="0" Duration="0:0:3" />
+                                     From="20" To="0" Duration="0:0:1" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>

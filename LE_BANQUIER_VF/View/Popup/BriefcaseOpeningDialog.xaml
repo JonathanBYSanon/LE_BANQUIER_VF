@@ -39,7 +39,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Element:Briefcase DataContext="{Binding Briefcase}"  Grid.ColumnSpan="2" Width="150"  
+            <Element:Briefcase DataContext="{Binding Briefcase}"  Grid.ColumnSpan="2" MaxWidth="200"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
             <Button Content="Révéler" Width="150" Height="50"
