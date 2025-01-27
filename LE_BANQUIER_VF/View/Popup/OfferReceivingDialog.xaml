@@ -24,6 +24,7 @@
         </Storyboard>
     </Window.Resources>
     
+    <!-- Pop up to show the bank offer -->
     <Border Background="#1E1E2F" 
         BorderBrush="#FFD700" 
         BorderThickness="10">
@@ -38,17 +39,19 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <!-- Use of the banker element -->
             <Element:Banker DataContext="{Binding Banker}" Grid.ColumnSpan="2" Width="300"  
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
+            <!-- Button to accept offer -->
             <Button Content="Accepter" Width="150" Height="50"
                     Grid.Column="0" Grid.Row="1" Style="{StaticResource ConfirmButtonStyle}"
                     Command="{Binding AcceptOfferCommand}"/>
 
+            <!-- Button to refuse offer -->
             <Button Content="Refuser" Width="150" Height="50" 
                     Grid.Column="1" Grid.Row="1" Style="{StaticResource CancelButtonStyle}"
                     Command="{Binding RefuseOfferCommand}"/>
-
 
         </Grid>
     </Border>

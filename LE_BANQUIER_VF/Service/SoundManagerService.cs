@@ -5,6 +5,9 @@ using System.Windows.Media;
 
 namespace LE_BANQUIER_VF.Service
 {
+    /// <summary>
+    /// Service to manage sound effects and background music, there is 3 different players for each group of sounds.
+    /// </summary>
     public class SoundManagerService
     {
         private static bool _isMuted = false;
@@ -26,8 +29,11 @@ namespace LE_BANQUIER_VF.Service
         }
 
         private static SoundManagerService _instance = new SoundManagerService();
+        // Media players for the background music
         private MediaPlayer _mediaPlayer;
+        // Media players for the sound effects
         private MediaPlayer _soundPlayer;
+        // Media players for the notifications about new messages
         private MediaPlayer _notifPlayer;
 
         // Private constructor to prevent instantiation

@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace LE_BANQUIER_VF.Model
 {
+    /// <summary>
+    /// Class representing the host of the game
+    /// </summary>
     public class Host : BaseViewModel
     {
         // The messsage the host is saying to the player

@@ -10,6 +10,8 @@
     <UserControl.DataContext>
         <vm:MenuViewModel/>
     </UserControl.DataContext>
+    
+    <!-- View of the menu -->
     <Grid>
         <!-- Background Logo with Blended Effect -->
         <Image Source="pack://application:,,,/Resource/Image/logo.jpg" 

@@ -24,31 +24,30 @@
         </Storyboard>
     </Window.Resources>
     
+    <!-- Pop up for the game ending showing the resume of the game -->
     <Border Background="#312D4B" CornerRadius="20" 
             BorderBrush="Gold" BorderThickness="5">
         <Grid>
-            <!-- Définition des lignes de la grille -->
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
-                <!-- Ligne vide pour futur contenu -->
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="5*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- ESPACE VIDE (à remplir plus tard) -->
+            <!-- Briefcase of the player -->
             <Grid Grid.Row="0">
                 <Element:Briefcase DataContext="{Binding Briefcase}" 
                                    MaxWidth="200"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
 
-            <!-- Titre -->
+            
+            <!-- Title -->
             <TextBlock Grid.Row="1" Text="🏆 Résumé de la Partie 🏆" 
                        FontSize="30" FontWeight="Bold" Foreground="Gold" 
                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-            <!-- Contenu du résumé de la partie -->
             <Grid Grid.Row="2" Background="#1E1B3A">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -60,6 +59,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
+                <!-- Resume of the game -->
                 <StackPanel Orientation="Horizontal" Grid.Row="0" 
                             HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="Joueur: " FontSize="18" FontWeight="Bold" Foreground="White"/>
@@ -75,14 +75,15 @@
 
                 <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                    <TextBlock Text="Meilleure offre: " FontSize="18" FontWeight="Bold" Foreground="White"/>
-                    <TextBlock Text="{Binding Resume.HighestOffer,  StringFormat=$\{0:0\}}" FontSize="18" Foreground="LimeGreen"/>
+                    <TextBlock Text="Meilleure offre: " FontSize="18" FontWeight="ExtraBold" Foreground="White"/>
+                    <TextBlock Text="{Binding Resume.HighestOffer,  StringFormat=$\{0:0\}}" FontSize="20" Foreground="Gold"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" 
-                            VerticalAlignment="Center">
-                    <TextBlock Text="Gain final: " FontSize="30" FontWeight="Bold" Foreground="Gold"/>
-                    <TextBlock Text="{Binding Resume.FinalPrize,  StringFormat=$\{0:0\}}" FontSize="30" Foreground="Gold"/>
+                            VerticalAlignment="Center" Background="DarkRed">
+                    <TextBlock Text="Gain final: " FontSize="30" FontWeight="Bold" Foreground="White" Margin="10,0,0,0"/>
+                    <TextBlock Text="{Binding Resume.FinalPrize,  StringFormat=$\{0:0\}}" 
+                               FontSize="30" Foreground="Gold" FontWeight="ExtraBold" Margin="0,0,10,0"/>
                 </StackPanel>
 
                 <TextBlock Text="Offres du banquier $:" Grid.Row="4" FontSize="18" FontWeight="Bold" 
@@ -91,7 +92,7 @@
                          Foreground="White" BorderBrush="Gold" BorderThickness="1">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding}" FontSize="16" Foreground="White"/>
+                            <TextBlock Text="{Binding StringFormat=$\{0:0\}}" FontSize="16" Foreground="White"/>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
@@ -103,10 +104,9 @@
                 </StackPanel>
             </Grid>
             
-            <!-- Boutons de contrôle -->
+            <!-- Boutton to close the game -->
             <Button Content="❌ Fermer" Width="160" Height="50" FontSize="18" 
-                    Background="LimeGreen" Grid.Row="3"
-                    Foreground="White" FontWeight="Bold" 
+                    Style="{StaticResource ConfirmButtonStyle}" Grid.Row="3"
                     Command="{Binding CloseCommand}"/>
 
         </Grid>

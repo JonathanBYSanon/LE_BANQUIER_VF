@@ -4,6 +4,9 @@ using System.Windows.Media.Imaging;
 
 namespace LE_BANQUIER_VF.Service.converter
 {
+    /// <summary>
+    /// Convertisseur de booléen en image for the briefcase
+    /// </summary>
     public class BooleanToImageConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

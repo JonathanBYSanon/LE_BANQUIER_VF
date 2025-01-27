@@ -10,6 +10,9 @@ using System.Windows;
 
 namespace LE_BANQUIER_VF.ViewModel
 {
+    /// <summary>
+    /// The view model of the game
+    /// </summary>
     public class GameViewModel : BaseViewModel
     {
         private bool isOver = false;
@@ -45,7 +48,9 @@ namespace LE_BANQUIER_VF.ViewModel
                 OnPropertyChanged();
             }
         }
+        // The low prizes, the first 13 prizes
         public IEnumerable<Prize> LowPrizes => Prizes?.Take(13) ?? Enumerable.Empty<Prize>();
+        // The high prizes, the last 13 prizes
         public IEnumerable<Prize> HighPrizes => Prizes?.Skip(13).Take(13) ?? Enumerable.Empty<Prize>();
 
         public Player Player
@@ -77,7 +82,7 @@ namespace LE_BANQUIER_VF.ViewModel
                 OnPropertyChanged();
             }
         }
-
+        // The selected briefcase, when a briefcase is selected the game will react to it depending on the round
         public Briefcase SelectedBriefcase
         {
             get => _selectedBriefcase;
@@ -89,7 +94,7 @@ namespace LE_BANQUIER_VF.ViewModel
                     onBriefcaseSelected();
             }
         }
-
+        // Command to leave the game
         public RelayCommand leaveCommand => new RelayCommand(leave);
 
         public GameViewModel()
@@ -109,6 +114,9 @@ namespace LE_BANQUIER_VF.ViewModel
             Host.Message = MessageGeneratorService.GetWelcomeMessage(Player.Name);
         }
 
+        /// <summary>
+        /// Method to react to the selection of a briefcase, the reaction depends on the round. The selectedBriefcase is cleared after the reaction
+        /// </summary>
         private void onBriefcaseSelected()
         {
 
@@ -120,12 +128,12 @@ namespace LE_BANQUIER_VF.ViewModel
             {
                 onBriefcaseOpening();
             }
-            else 
-            { 
-                onBriefcaseSwitching();
-            }
+           
             clearSelection();
         }
+        /// <summary>
+        /// Method to allow the player to select a briefcase, it's called in round 0
+        /// </summary>
         private void onPlayerBriefcaseSelection()
         {
             PlayerBriefcaseSelectionDialag dialog = new PlayerBriefcaseSelectionDialag(Briefcases,Player,SelectedBriefcase,Host);
@@ -134,6 +142,9 @@ namespace LE_BANQUIER_VF.ViewModel
             Host.Message = MessageGeneratorService.GetBriefcaseSelectionReaction(SelectedBriefcase.Number, result);
             if (result) nextRound();
         }
+        /// <summary>
+        /// Method to allow the player to eliminate a briefcase, it's called from round 1 to 24
+        /// </summary>
         private void onBriefcaseOpening()
         {
             BriefcaseOpeningDialog dialog1 = new BriefcaseOpeningDialog(SelectedBriefcase, Host, getRemainingPrizes());
@@ -142,14 +153,21 @@ namespace LE_BANQUIER_VF.ViewModel
             if (SelectedBriefcase.IsOpened) nextRound();
             else Host.Message = MessageGeneratorService.GetCancelBriefcaseEliminationMessage();
         }
+        /// <summary>
+        /// Method the make an offer to the player by the banker, it will end the game if the offer is accepted, it's called in the offer rounds
+        /// </summary>
         private void onOfferMaking()
         {
-            Banker.MakeSmartOffer(getRemainingPrizes());
+            Banker.Offer = OfferCalculatorService.CalculateSmartOffer(getRemainingPrizes());
             OfferReceivingDialog dialog2 = new OfferReceivingDialog(Banker, Host);
             bool result = dialog2.ShowDialog() ?? false;
 
             if (result) onEndGame();
         }
+
+        /// <summary>
+        /// Method to allow the player to switch briefcases, it's called in round 25, the game will end after the switch
+        /// </summary>
         private void onBriefcaseSwitching()
         {
             BriefcaseSwitchingDialog dialog3 = new BriefcaseSwitchingDialog(Player, Briefcases, Host);
@@ -157,6 +175,9 @@ namespace LE_BANQUIER_VF.ViewModel
 
             onEndGame();
         }
+        /// <summary>
+        /// Method to end the game, it will show the game resume and the player's briefcase will be revealed
+        /// </summary>
         private void onEndGame()
         {
             GameResume gameResume = new GameResume(Player, Banker, Prizes);
@@ -167,6 +188,9 @@ namespace LE_BANQUIER_VF.ViewModel
             leave(null);
             isOver = true;
         }
+        /// <summary>
+        /// Method to go to the next round, it will call the offer making method if the round is an offer round, it will call briefcase switching method if it's round 25 and genereate a message for the player
+        /// </summary>
         private void nextRound()
         {
             if(GameProgressService.Instance.IsOfferRound)
@@ -189,23 +213,32 @@ namespace LE_BANQUIER_VF.ViewModel
             GameProgressService.Instance.NextRound();
             if (GameProgressService.Instance.Round == 25) onBriefcaseSwitching();
         }
+        /// <summary>
+        /// Method to clear the selected briefcase
+        /// </summary>
         private void clearSelection()
         {
             SelectedBriefcase = null;
         }
-
-       private List<int> getRemainingPrizes()
-       {
+        /// <summary>
+        /// Method to get the remaining prizes in a list
+        /// </summary>
+        /// <returns></returns>
+        private List<int> getRemainingPrizes()
+        {
             return Prizes
                 .Where(p => p.IsAvailable)
                 .Select(p => p.Amount)
                 .ToList();
-       }
-
-       private void leave(object paramater)
-       {
+        }
+        /// <summary>
+        /// Method to leave the game, it will reset the game progress and navigate to the home page
+        /// </summary>
+        /// <param name="paramater"></param>
+        private void leave(object paramater)
+        {
             GameProgressService.Instance.Reset();
             NavigationServiceLocator.NavigationService.NavigateTo("Home");
-       }
+        }
     }
 }

@@ -2,6 +2,9 @@
 
 namespace LE_BANQUIER_VF.Model
 {
+    /// <summary>
+    /// Class representing a winnable prize in the game, from MaxAmount to 0
+    /// </summary>
     public class Prize : BaseViewModel
     {
         // Amount of the prize

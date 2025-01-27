@@ -9,19 +9,22 @@ using System.Threading.Tasks;
 
 namespace LE_BANQUIER_VF.Service
 {
+    /// <summary>
+    /// Service to manage the game progression
+    /// </summary>
     public class GameProgressService : BaseViewModel
     {
         // Instance unique (Singleton)
         private static GameProgressService _instance = new GameProgressService();
         public static GameProgressService Instance => _instance;
 
-        // Constructeur privé pour empêcher la création d'autres instances
+        // Private constructor to avoid external instantiation
         private GameProgressService()
         {
             Reset();
         }
 
-        // Propriétés liées à la progression du jeu
+        // Properties for the game progression
         private int _round;
         public int Round
         {
@@ -54,12 +57,14 @@ namespace LE_BANQUIER_VF.Service
         }
 
         public List<int> OfferRounds { get; } = new List<int> { 6, 11, 15, 18, 20, 21, 22, 23, 24 };
+        public bool IsOfferRound => OfferRounds[NextOfferIndex] == Round;
+        public int NextOfferRound => OfferRounds[NextOfferIndex];
 
-        // Avancer d'un round
+        // Advance to the next round
         public void NextRound()
         {
-            
-            if (NextOfferIndex < OfferRounds.Count-1 && Round >= OfferRounds[NextOfferIndex])
+
+            if (NextOfferIndex < OfferRounds.Count - 1 && Round >= OfferRounds[NextOfferIndex])
             {
                 NextOfferIndex++;
             }
@@ -67,11 +72,7 @@ namespace LE_BANQUIER_VF.Service
 
         }
 
-        // Vérifier si le round actuel est un round d'offre
-        public bool IsOfferRound => OfferRounds[NextOfferIndex] == Round;
-        public int NextOfferRound => OfferRounds[NextOfferIndex];
-
-        // Réinitialiser la progression
+        // Réinitialize the game progression
         public void Reset()
         {
             Round = 0;

@@ -5,14 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LE_BANQUIER_VF.Resource.Element"
              mc:Ignorable="d" ClipToBounds="True">
-    
+
+    <!-- Reusable user control that represent a briefcase -->
     <Grid Margin="5">
+        <!-- Briefcase Image, that switch depending if the briefcase is open or not-->
         <Image Source="{Binding IsOpened, Converter={StaticResource BriefcaseImageConverter}}" Stretch="Uniform"/>
 
+        <!-- Briefcase Number -->
         <TextBlock Text="{Binding Number}" HorizontalAlignment="Center" VerticalAlignment="Center" 
                    FontWeight="ExtraBold" FontSize="30" Foreground="DarkRed"
                    Visibility="{Binding IsOpened, Converter={StaticResource BooleanToVisibilityInverseConverter}}"/>
 
+        <!-- Prize contain in the briefcase -->
         <TextBlock Text="{Binding Prize.Amount, StringFormat=$\{0:0\}}" 
            HorizontalAlignment="Center" 
            VerticalAlignment="Center" 
@@ -21,7 +25,7 @@
            Foreground="Gold"
            Visibility="{Binding IsOpened, Converter={StaticResource BooleanToVisibilityConverter}, NotifyOnTargetUpdated=True}">
 
-            <!-- Ombre portée pour améliorer la lisibilité -->
+            <!-- Shadow effect -->
             <TextBlock.Effect>
                 <DropShadowEffect ShadowDepth="0" Color="Black" BlurRadius="15" Opacity="0.7" />
             </TextBlock.Effect>
@@ -31,13 +35,13 @@
                 <EventTrigger RoutedEvent="Binding.TargetUpdated">
                     <BeginStoryboard>
                         <Storyboard>
-                            <!-- Animation d'opacité -->
+                            <!-- Opacity animation -->
                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
                                      From="0" To="1" Duration="0:0:1" />
-                            <!-- Animation de taille pour un effet d'apparition -->
+                            <!-- Size animation -->
                             <DoubleAnimation Storyboard.TargetProperty="FontSize"
                                      From="20" To="40" Duration="0:0:1" />
-                            <!-- Animation de translation pour un effet de montée -->
+                            <!-- Translation animation  -->
                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
                                      From="20" To="0" Duration="0:0:1" />
                         </Storyboard>
@@ -45,7 +49,7 @@
                 </EventTrigger>
             </TextBlock.Triggers>
 
-            <!-- Transformation pour gérer la translation -->
+            <!-- Transformation that goes with the translation -->
             <TextBlock.RenderTransform>
                 <TranslateTransform />
             </TextBlock.RenderTransform>

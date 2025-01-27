@@ -6,10 +6,12 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <!-- Converters -->
             <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
             <conv:BooleanToVisibilityInverseConverter x:Key="BooleanToVisibilityInverseConverter"/>
             <conv:BooleanToImageConverter x:Key="BriefcaseImageConverter"/>
             <conv:BooleanToTextConverter x:Key="BooleanToTextConverter"/>
+            <!-- Styles -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resource/Style/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="Resource/Style/ListViewStyle.xaml"/>

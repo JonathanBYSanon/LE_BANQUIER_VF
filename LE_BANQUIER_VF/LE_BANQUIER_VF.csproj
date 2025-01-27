@@ -147,6 +147,7 @@
     <Compile Include="Service\converter\BooleanToVisibilityInverseConverter.cs" />
     <Compile Include="Service\GameProgressService.cs" />
     <Compile Include="Service\MessageGeneratorService.cs" />
+    <Compile Include="Service\OfferCalculatorService.cs" />
     <Compile Include="Service\PrizesGeneratorService.cs" />
     <Compile Include="Service\SettingService.cs" />
     <Compile Include="Service\SoundManagerService.cs" />

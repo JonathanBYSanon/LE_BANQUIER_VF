@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:LE_BANQUIER_VF.Resource.Element"
              mc:Ignorable="d" ClipToBounds="True">
 
+    <!-- Reusable user control that represent the host -->
     <Border Background="#493971" Margin="0,20,0,0">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -14,7 +15,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Image x:Name="ExclamationImage"
+            <!-- Image that popup to notify about a new message-->
+            <Image x:Name="NotifyImage"
                    Source="pack://application:,,,/Resource/Image/NewMessage.png"
                    Width="100" Height="100"
                    Opacity="0"
@@ -25,7 +27,7 @@
                 </Image.RenderTransform>
             </Image>
             
-            <!-- TextBlock avec animation de pop -->
+            <!-- Textblock of the message -->
             <TextBlock Text="{Binding Message, NotifyOnTargetUpdated=True}" 
                        FontSize="18" 
                        FontWeight="ExtraBold"
@@ -36,28 +38,29 @@
                        Grid.Column="1"
                        TextWrapping="Wrap"
                        TextAlignment="Center">
-
-                <!-- Triggers pour détecter les changements -->
+                
                 <TextBlock.Triggers>
                     <EventTrigger RoutedEvent="Binding.TargetUpdated">
                         <BeginStoryboard>
                             <Storyboard>
-                                <!-- Animation de fade-in -->
+                                <!-- Fade In for the message-->
                                 <DoubleAnimation Storyboard.TargetProperty="Opacity"
                                                  From="0" To="1" Duration="0:0:2" />
-                                <!-- Animation de fade-in pour l'image -->
-                                <DoubleAnimation Storyboard.TargetName="ExclamationImage"
+                                
+                                <!-- #### Notify image animation #### -->
+                                <!-- Fade in -->
+                                <DoubleAnimation Storyboard.TargetName="NotifyImage"
                                                  Storyboard.TargetProperty="Opacity"
                                                  From="0" To="1" Duration="0:0:1" />
-                                <!-- Animation de mise à l'échelle (pop) -->
-                                <DoubleAnimation Storyboard.TargetName="ExclamationImage"
+                                <!-- Pop -->
+                                <DoubleAnimation Storyboard.TargetName="NotifyImage"
                                                  Storyboard.TargetProperty="RenderTransform.ScaleX"
                                                  From="1" To="1.5" Duration="0:0:1" AutoReverse="True" />
-                                <DoubleAnimation Storyboard.TargetName="ExclamationImage"
+                                <DoubleAnimation Storyboard.TargetName="NotifyImage"
                                                  Storyboard.TargetProperty="RenderTransform.ScaleY"
                                                  From="1" To="1.5" Duration="0:0:1" AutoReverse="True" />
-                                <!-- Animation de fade-out pour l'image -->
-                                <DoubleAnimation Storyboard.TargetName="ExclamationImage"
+                                <!-- fade out-->
+                                <DoubleAnimation Storyboard.TargetName="NotifyImage"
                                                  Storyboard.TargetProperty="Opacity"
                                                  From="1" To="0" Duration="0:0:0.2" BeginTime="0:0:3" />
                             </Storyboard>
@@ -66,6 +69,7 @@
                 </TextBlock.Triggers>
             </TextBlock>
 
+            <!-- Image of the host -->
             <Image Source="pack://application:,,,/Resource/Image/host.png"
                    Grid.Column="2" HorizontalAlignment="Right"/>
             

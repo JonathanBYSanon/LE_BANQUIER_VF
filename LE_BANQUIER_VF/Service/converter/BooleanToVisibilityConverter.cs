@@ -7,6 +7,9 @@ using System.Windows.Data;
 
 namespace LE_BANQUIER_VF.Service.converter
 {
+    /// <summary>
+    /// Converter to convert a boolean value to a visibility value for the briefcase
+    /// </summary>
     public class BooleanToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

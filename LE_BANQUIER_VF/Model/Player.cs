@@ -2,6 +2,9 @@
 
 namespace LE_BANQUIER_VF.Model
 {
+    /// <summary>
+    /// Class representing a player in the game
+    /// </summary>
     public class Player : BaseViewModel
     {
         // The player's name

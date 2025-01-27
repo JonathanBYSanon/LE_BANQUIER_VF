@@ -7,6 +7,9 @@ using System.Windows;
 
 namespace LE_BANQUIER_VF.Service
 {
+    /// <summary>
+    /// Service to generate a list of 26 prizes based on a maximum amount
+    /// </summary>
     public static class PrizesGeneratorService
     {
         public static ObservableCollection<Prize> GeneratePrizes(int maxAmount)
@@ -61,6 +64,12 @@ namespace LE_BANQUIER_VF.Service
             );
         }
 
+
+        /// <summary>
+        /// Calculate the middle value based on the maximum amount
+        /// </summary>
+        /// <param name="maxAmount"></param>
+        /// <returns></returns>
         private static int CalculateMiddle(int maxAmount)
         {
             if(maxAmount < 100)
@@ -76,6 +85,13 @@ namespace LE_BANQUIER_VF.Service
             return int.Parse(middleStr);
         }
 
+        /// <summary>
+        /// Generate a list of increasing intervals based on a start and end value
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         private static List<int> GenerateIncreasingIntervals(int start, int end, int count)
         {
             var prizes = new List<int> { start };  // S'assurer que la première valeur est le début
@@ -123,7 +139,14 @@ namespace LE_BANQUIER_VF.Service
             return prizes;
         }
 
-        // Détermine le facteur d'arrondi basé sur les écarts
+        /// <summary>
+        /// Calculate the rounding factor based on the previous and current values
+        /// </summary>
+        /// <param name="previous"></param>
+        /// <param name="current"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
         private static int CalculateRoundingFactor(int previous, int current, int start, int end)
         {
             int gap = current - previous;
@@ -136,15 +159,15 @@ namespace LE_BANQUIER_VF.Service
             else if (gap < 25)
                 return 5;
             else if (gap < 50)
-                return 10;   // Arrondi à 10 pour les petits écarts
+                return 10; 
             else if (gap < 500)
-                return 50;   // Arrondi à 50 pour les moyennes valeurs
+                return 50;
             else if (gap < 5000)
-                return 500;  // Arrondi à 500 pour les grands intervalles
+                return 500; 
             else if (gap < 50000)
-                return 5000;  // Arrondi à 5000 pour les très grands écarts
+                return 5000; 
             else
-                return 25000; // Arrondi à 25000 pour des écarts énormes
+                return 25000;
         }
     }
 }

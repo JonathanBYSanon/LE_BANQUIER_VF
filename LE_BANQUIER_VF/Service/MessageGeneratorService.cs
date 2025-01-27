@@ -9,11 +9,14 @@ using System.Windows;
 
 namespace LE_BANQUIER_VF.Service
 {
+    /// <summary>
+    /// Service to generate messages for the game based on the current game state.
+    /// </summary>
     public static class MessageGeneratorService
     {
         private static readonly Random _random = new Random();
 
-        // Message d'accueil et explication du jeu
+        // Welcome messages for the player
         public static string GetWelcomeMessage(string playerName)
         {
             string[] messages = 
@@ -27,7 +30,7 @@ namespace LE_BANQUIER_VF.Service
             return messages[_random.Next(messages.Length)];
         }
 
-        // Message pour confirmer le choix du joueur et ajouter du suspense
+        // Messages to confirm the player's choice of briefcase
         public static string GetBriefcaseSelectionMessage(string briefcaseNumber)
         {
             string[] messages = 
@@ -41,6 +44,7 @@ namespace LE_BANQUIER_VF.Service
             return messages[_random.Next(messages.Length)];
         }
 
+        // Message to react to the player's choice of briefcase
         public static string GetBriefcaseSelectionReaction(int briefcaseNumber,bool answer)
         {
             string[] trueMessages =
@@ -67,7 +71,7 @@ namespace LE_BANQUIER_VF.Service
                                    falseMessages[_random.Next(falseMessages.Length)];
         }
 
-        // Message pour confirmer l'ouverture de la mallette
+        // Message to confirm the player's choice of briefcase to eliminate
         public static string GetOpenBriefcaseMessage(string briefcaseNumber)
         {
             string[] messages = 
@@ -81,6 +85,7 @@ namespace LE_BANQUIER_VF.Service
             return messages[_random.Next(messages.Length)];
         }
 
+        // Message to react to the player eliminating a briefcase
         public static string GetOpenBriefcaseReaction(int revealedAmount, List<int> remainingAmounts)
         {
             string[] superMessages =
@@ -165,6 +170,7 @@ namespace LE_BANQUIER_VF.Service
             return cancelMessages[random.Next(cancelMessages.Length)];
         }
 
+        // Message to guide the player to the next round
         public static string GetNextRoundMessage()
         {
             string[] nextBriefcasePrompts =
@@ -184,7 +190,7 @@ namespace LE_BANQUIER_VF.Service
         }
 
 
-        // Message pour demander si le joueur veut accepter l'offre
+        // Messages to inform the player of the banker's offer
         public static string GetOfferAcceptanceMessage(int offerAmount)
         {
             string[] messages = 
@@ -198,7 +204,7 @@ namespace LE_BANQUIER_VF.Service
             return messages[_random.Next(messages.Length)];
         }
 
-        // Message pour réagir à la décision du joueur
+        // Messages to react to the player's decision to accept or refuse the banker's offer
         public static string GetPlayerDecisionReaction()
         {
             string[] messages =
@@ -212,7 +218,7 @@ namespace LE_BANQUIER_VF.Service
             return messages[_random.Next(messages.Length)];
         }
 
-        // Message pour proposer au joueur d'échanger sa mallette
+        // Messages to inform the player to switch or keep their briefcase
         public static string GetSwitchBriefcaseMessage()
         {
             string[] messages = 
@@ -226,7 +232,7 @@ namespace LE_BANQUIER_VF.Service
             return messages[_random.Next(messages.Length)];
         }
 
-        // Message pour annoncer la fin du jeu et révéler le gain
+        // Messages to inform the player of the end of the game
         public static string GetEndGameMessage(int wonAmount, int lastBriefcaseAmount = 0, int playerBriefcaseAmount = 0, int lastOfferAmount = 0)
         {
             string[] messages;
@@ -235,7 +241,6 @@ namespace LE_BANQUIER_VF.Service
             {
                 if (lastBriefcaseAmount > wonAmount)
                 {
-                    // Le joueur a fait le mauvais choix entre les deux mallettes et aurait dû prendre l'offre
                     messages = new string[]
                     {
                         $"Oups ! Ta mallette contenait ${lastBriefcaseAmount}, mais tu repars avec ${wonAmount}... Le banquier a gagné cette fois !",
@@ -245,7 +250,6 @@ namespace LE_BANQUIER_VF.Service
                 }
                 else
                 {
-                    // Le joueur a fait le bon choix entre les deux mallettes et avait raison de refuser l'offre
                     messages = new string[]
                     {
                         $"Bravo ! Tu as bien fait de garder cette mallette. ${wonAmount}, c'était le bon choix !",
@@ -258,7 +262,6 @@ namespace LE_BANQUIER_VF.Service
             {
                 if (wonAmount < playerBriefcaseAmount)
                 {
-                    // Le joueur a fait le mauvais choix, il aurait dû garder sa mallette
                     messages = new string[]
                     {
                         $"Argh... Ta mallette contenait ${playerBriefcaseAmount}, mais tu as pris l'offre du banquier à ${wonAmount}. Mauvais choix !",
@@ -268,7 +271,6 @@ namespace LE_BANQUIER_VF.Service
                 }
                 else
                 {
-                    // Le joueur a fait le bon choix en acceptant l'offre
                     messages = new string[]
                     {
                         $"Bien joué ! Tu as accepté l'offre de ${wonAmount} et évité une mallette à seulement ${playerBriefcaseAmount}.",
@@ -283,8 +285,7 @@ namespace LE_BANQUIER_VF.Service
             return messages[_random.Next(messages.Length)];
         }
 
-
-        // Message pour informer que le banquier prépare une offre
+        // Message to inform the player that the banker is calling
         public static string GetBankerCallMessage()
         {
             SoundManagerService.Instance.PlayEffect("PhoneRinging.mp3");

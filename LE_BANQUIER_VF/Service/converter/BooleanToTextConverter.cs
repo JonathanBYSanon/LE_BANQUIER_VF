@@ -8,6 +8,9 @@ using System.Windows.Data;
 
 namespace LE_BANQUIER_VF.Service.converter
 {
+    /// <summary>
+    /// Converter of boolean to text for the next offer in the progress bar
+    /// </summary>
     public class BooleanToTextConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

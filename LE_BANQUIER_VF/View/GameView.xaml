@@ -11,6 +11,8 @@
     <UserControl.DataContext>
         <vm:GameViewModel />
     </UserControl.DataContext>
+    
+    <!-- View of the game -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -25,11 +27,14 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <!-- Button to leave the game -->
             <Button Content="❌ Quitter" Command="{Binding leaveCommand}" Grid.Column="0"
                     Style="{StaticResource CancelButtonStyle}" Width="100" Height="50"/>
             
+            <!-- Use of the progress element -->
             <Element:GameProgress HorizontalAlignment="Stretch" Grid.Column="1"/>
             
+            <!-- Player chosen briefcase -->
             <Element:Briefcase DataContext="{Binding Player.Briefcase}" Margin="20" Grid.Column="2"/>
             
         </Grid>
@@ -50,7 +55,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Element:Prize PrizeElement="{Binding}" Width="150"/>
+                        <Element:Prize DataContext="{Binding}" Width="200"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -85,12 +90,13 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Element:Prize PrizeElement="{Binding}" Width="150"/>
+                        <Element:Prize DataContext="{Binding}" Width="200"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </Grid>
 
+        <!-- Use of the host element -->
         <Element:Host Grid.Row="2" DataContext="{Binding Host}"/>
 
     </Grid>

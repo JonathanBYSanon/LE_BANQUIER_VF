@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
+    <!-- Style for the ListView displaying the briefcases -->
     <Style x:Key="ListViewBriefcase" TargetType="ListViewItem">
-        <!-- Appliquer des propriétés de base -->
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -16,18 +16,14 @@
                         BorderThickness="2"
                         BorderBrush="Transparent"
                         RenderTransformOrigin="0.5,0.5">
-                        <!-- Contenu de l'élément -->
                         <ContentPresenter />
                     </Border>
                     <ControlTemplate.Triggers>
-                        <!-- Effet lorsqu'un élément est sélectionné -->
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="Border" Property="BorderBrush" Value="Green" />
-                        </Trigger>
-
-                        <!-- Effet lorsqu'un élément est survolé -->
-                        <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Border" Property="BorderBrush" Value="Gold" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="WhiteSmoke" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

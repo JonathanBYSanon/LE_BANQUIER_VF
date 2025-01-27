@@ -5,12 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LE_BANQUIER_VF.Resource.Element"
              mc:Ignorable="d" ClipToBounds="True">
+    
+    <!-- Reusable user control that represent the banker -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
+        <!-- Banker Image -->
         <Image Source="pack://application:,,,/Resource/Image/banker.png" Stretch="Uniform"/>
+        
+        <!-- Banker active offer -->
         <Border Grid.Row="1" Background="Gold" CornerRadius="0,0,10,10" 
                 BorderThickness="2" BorderBrush="DarkRed">
             <TextBlock Text="{Binding Offer, StringFormat=$\{0:0\}}"
@@ -18,5 +25,29 @@
                        TextAlignment="Center" Foreground="DarkRed" FontSize="25"
                        FontWeight="ExtraBold"/>
         </Border>
+
+        <!-- All Banker offers from the game -->
+        <ScrollViewer FlowDirection="RightToLeft" HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Disabled" Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding Offers}" Grid.Row="2">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="Transparent" BorderThickness="2" Opacity="0.2"
+                                BorderBrush="WhiteSmoke" CornerRadius="5" Padding="5" Margin="5">
+                            <TextBlock Text="{Binding StringFormat=$\{0:0\}}" 
+                                       Foreground="WhiteSmoke" FontSize="18" 
+                                       FontWeight="Bold" TextAlignment="Center"
+                                       Opacity="0.5"/>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        
     </Grid>
 </UserControl>

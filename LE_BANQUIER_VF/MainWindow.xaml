@@ -16,6 +16,9 @@
             <!-- Darker Navy -->
         </LinearGradientBrush>
     </Window.Background>
+    
+    
+    <!-- Main window that will hold all the views -->
     <Grid>
         <!-- CotentControl that will hold the different Views-->
         <ContentControl x:Name="ContentSpace" />

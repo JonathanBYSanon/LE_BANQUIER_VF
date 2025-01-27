@@ -2,6 +2,9 @@
 
 namespace LE_BANQUIER_VF.Model
 {
+    /// <summary>
+    /// Class representing a briefcase in the game
+    /// </summary>
     public class Briefcase : BaseViewModel
     {
         // Number of the briefcase

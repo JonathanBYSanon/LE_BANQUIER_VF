@@ -5,6 +5,9 @@ using System.Text.Json;
 
 namespace LE_BANQUIER_VF.Service
 {
+    /// <summary>
+    /// Service to manage the settings of the game loaded from a json file or saved to it
+    /// </summary>
     public static class SettingService
     {
         private const string SettingsFile = "settings.json";

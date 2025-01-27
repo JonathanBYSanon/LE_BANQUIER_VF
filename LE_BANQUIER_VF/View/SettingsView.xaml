@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LE_BANQUIER_VF.View"
              mc:Ignorable="d">
+    
+    <!-- View of the settings -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

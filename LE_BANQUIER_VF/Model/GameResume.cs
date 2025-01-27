@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace LE_BANQUIER_VF.Model
 {
+    /// <summary>
+    /// Class representing the game resume
+    /// </summary>
     public class GameResume
     {
         // Player details

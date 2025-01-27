@@ -14,7 +14,7 @@ namespace LE_BANQUIER_VF
         public MainWindow()
         {
             InitializeComponent();
-            SoundManagerService.Instance.PlayMusic("BackgroundSound.mp3", true);
+            SoundManagerService.Instance.PlayMusic("BackgroundSound.mp3", true); // Play the background music
 
             // Initialization of the navigation service with the contentcontrol
             NavigationServiceLocator.NavigationService = new NavigationService(ContentSpace);
@@ -25,7 +25,7 @@ namespace LE_BANQUIER_VF
             NavigationServiceLocator.NavigationService.RegisterView("Rules", typeof(RulesView));
             NavigationServiceLocator.NavigationService.RegisterView("Settings", typeof(SettingsView));
 
-            // Navigating to the home view
+            // Navigating to the home view automatically
             NavigationServiceLocator.NavigationService.NavigateTo("Home");
         }
     }

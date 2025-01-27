@@ -10,6 +10,9 @@ using System.Windows;
 
 namespace LE_BANQUIER_VF.Service
 {
+    /// <summary>
+    /// Service to generate the 26 briefcases with shuffled prizes
+    /// </summary>
     public static class BriefcasesGeneratorService
     {
         public static ObservableCollection<Briefcase> GenerateBriefcases(ObservableCollection<Prize> prizes)

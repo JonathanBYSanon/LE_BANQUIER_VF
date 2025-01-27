@@ -24,6 +24,7 @@
         </Storyboard>
     </Window.Resources>
 
+    <!-- Pop up for the briefcase reveal -->
     <Border Background="#1E1E2F" 
             BorderBrush="#FFD700" 
             CornerRadius="15"
@@ -39,14 +40,17 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <!-- Use of the briefcase element -->
             <Element:Briefcase DataContext="{Binding Briefcase}"  Grid.ColumnSpan="2" MaxWidth="200"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
+            <!-- Confirmation Button -->
             <Button Content="Révéler" Width="150" Height="50"
                     Grid.Column="0" Grid.Row="1" Style="{StaticResource ConfirmButtonStyle}"
                     Command="{Binding OpenCaseCommand}" 
                     Visibility="{Binding Briefcase.IsOpened, Converter={StaticResource BooleanToVisibilityInverseConverter}}"/>
 
+            <!-- Return Button -->
             <Button Content="Retour" Width="150" Height="50" 
                     Grid.Column="1" Grid.Row="1" Style="{StaticResource CancelButtonStyle}"
                 Command="{Binding CloseDialogCommand}"/>

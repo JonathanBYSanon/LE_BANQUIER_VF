@@ -3,6 +3,9 @@ using System.Windows.Input;
 
 namespace LE_BANQUIER_VF.Core
 {
+    /// <summary>
+    /// Base class for commands that can be executed by the view model, implementing the ICommand interface.
+    /// </summary>
     public class RelayCommand : ICommand
     {
         private readonly Action<object> _execute;
