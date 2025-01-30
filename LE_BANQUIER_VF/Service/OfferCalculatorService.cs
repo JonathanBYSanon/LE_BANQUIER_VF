@@ -13,7 +13,18 @@ namespace LE_BANQUIER_VF.Service
     /// </summary>
     public static class OfferCalculatorService
     {
-        public static int CalculateSmartOffer(List<int> prizes)
+        public static int CalculateOffer(List<int> prizes)
+        {
+            if (!SettingService.Settings.IsSmartOfferEnabled)
+            {
+                return CalculateSimpleOffer(prizes);
+            }
+            else
+            {
+                return CalculateSmartOffer(prizes);
+            }
+        }
+        private static int CalculateSmartOffer(List<int> prizes)
         {
             int round = GameProgressService.Instance.Round;
             int totalRounds = 26;
@@ -75,5 +86,27 @@ namespace LE_BANQUIER_VF.Service
             int finalOffer = (int)adjustedOffer;
             return finalOffer;
         }
+
+
+        /// <summary>
+        /// Calculate a simple offer based on the average of the remaining prizes
+        /// </summary>
+        /// <param name="prizes"></param>
+        /// <returns></returns>
+        private static int CalculateSimpleOffer(List<int> prizes)
+        {
+            if (prizes == null || !prizes.Any() || !GameProgressService.Instance.IsOfferRound)
+            {
+                MessageBox.Show("Une erreur est survenue, veuillez lancer une autre partie", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                GameProgressService.Instance.Reset();
+                NavigationServiceLocator.NavigationService.NavigateTo("Home");
+            }
+
+            //Average of all the remaining prizes
+            double offer = prizes.Average();
+
+            return (int)offer;
+        }
+
     }
 }

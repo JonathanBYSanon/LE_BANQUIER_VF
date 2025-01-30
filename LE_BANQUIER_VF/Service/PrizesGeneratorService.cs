@@ -12,7 +12,19 @@ namespace LE_BANQUIER_VF.Service
     /// </summary>
     public static class PrizesGeneratorService
     {
+
         public static ObservableCollection<Prize> GeneratePrizes(int maxAmount)
+        {
+            if(!SettingService.Settings.IsSmartPrizeGeneratorEnabled)
+            {
+                return GenerateSimplePrizes(maxAmount);
+            }
+            else
+            {
+                return GenerateSmartPrizes(maxAmount);
+            }
+        }
+        private static ObservableCollection<Prize> GenerateSmartPrizes(int maxAmount)
         {
             if (maxAmount <= 0)
                 throw new ArgumentException("maxAmount must be greater than 0.");
@@ -168,6 +180,28 @@ namespace LE_BANQUIER_VF.Service
                 return 5000; 
             else
                 return 25000;
+        }
+
+        /// <summary>
+        /// Generate a simple list of prizes based on a maximum amount with fixed pourcentages
+        /// </summary>
+        /// <param name="maxAmount"></param>
+        /// <returns></returns>
+        private static ObservableCollection<Prize> GenerateSimplePrizes(int maxAmount)
+        {
+            double[] pourcentages = new double[] { 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6, 7, 8, 9, 10, 12.5, 15, 17.5, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
+            ObservableCollection<Prize> prizes = new ObservableCollection<Prize>();
+            foreach (double pourcentage in pourcentages)
+            {
+                Prize prize = new Prize
+                {
+                    Amount = (int)(maxAmount * pourcentage / 100),
+                    IsAvailable = true
+                };
+                prizes.Add(prize);
+            }
+
+            return prizes;
         }
     }
 }

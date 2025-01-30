@@ -99,15 +99,13 @@ namespace LE_BANQUIER_VF.ViewModel
 
         public GameViewModel()
         {
-            // Load the settings of the game
-            GameSetting gameSetting = SettingService.LoadSettings();
 
             // Generate the prizes and the briefcases
-            Prizes = PrizesGeneratorService.GeneratePrizes(gameSetting.MaxAmount);
+            Prizes = PrizesGeneratorService.GeneratePrizes(SettingService.Settings.MaxAmount);
             Briefcases = BriefcasesGeneratorService.GenerateBriefcases(Prizes);
 
             // Initialize the player, banker, and host
-            Player = new Player { Name = gameSetting.PlayerName };
+            Player = new Player { Name = SettingService.Settings.PlayerName };
             Banker = new Banker { Offers = new ObservableCollection<int>() };
             Host = new Host();
 
@@ -158,7 +156,7 @@ namespace LE_BANQUIER_VF.ViewModel
         /// </summary>
         private void onOfferMaking()
         {
-            Banker.Offer = OfferCalculatorService.CalculateSmartOffer(getRemainingPrizes());
+            Banker.Offer = OfferCalculatorService.CalculateOffer(getRemainingPrizes());
             OfferReceivingDialog dialog2 = new OfferReceivingDialog(Banker, Host);
             bool result = dialog2.ShowDialog() ?? false;
 

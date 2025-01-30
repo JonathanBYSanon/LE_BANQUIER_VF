@@ -4,71 +4,79 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LE_BANQUIER_VF.View"
+             xmlns:vm="clr-namespace:LE_BANQUIER_VF.ViewModel"
              mc:Ignorable="d">
-    
-    <!-- View of the settings -->
+
+    <UserControl.DataContext>
+        <vm:SettingsViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <!-- Title -->
-            <RowDefinition Height="3*"/>
-            <!-- Settings Form -->
+            <RowDefinition Height="4*"/>
             <RowDefinition Height="*"/>
-            <!-- Save Button -->
         </Grid.RowDefinitions>
 
         <!-- Title -->
-        <TextBlock Text="⚙️ Paramètres"
-                   FontSize="40"
-                   Foreground="Gold"
-                   FontWeight="Bold"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Grid.Row="0"/>
+        <TextBlock Text="⚙️ Paramètres du Jeu" 
+               FontSize="40" 
+               FontWeight="Bold" 
+               Foreground="Gold" 
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Center"/>
 
         <!-- Settings Form -->
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="400" Grid.Row="1">
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
 
             <!-- Player Name -->
-            <TextBlock Text="Nom du joueur :" Foreground="White" FontSize="24"/>
+            <TextBlock Text="Nom du Joueur" FontSize="20" Foreground="White"/>
             <TextBox Text="{Binding Settings.PlayerName}" 
-                     FontSize="22" 
-                     Foreground="Black" 
-                     Background="White"
-                     BorderBrush="Gold"
-                     Padding="10"/>
+                 FontSize="20" 
+                 Foreground="Black" 
+                 Background="White" 
+                 Padding="5" 
+                 BorderBrush="Gold"/>
 
             <!-- Max Amount -->
-            <TextBlock Text="Montant maximum :" Foreground="White" FontSize="24"/>
+            <TextBlock Text="Montant Maximum" FontSize="20" Foreground="White"/>
             <TextBox Text="{Binding Settings.MaxAmount}" 
-                     FontSize="22" 
-                     Foreground="Black" 
-                     Background="White"
-                     BorderBrush="Gold"
-                     Padding="10"/>
+                 FontSize="20" 
+                 Foreground="Black" 
+                 Background="White" 
+                 Padding="5"
+                 BorderBrush="Gold"/>
 
-            <!-- Sound Toggle -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="Son :" Foreground="White" FontSize="24" Margin="0,0,20,0"/>
-                <ToggleButton x:Name="SoundToggle"
-                              Content="🔊 Activer"
-                              FontSize="20"
-                              Width="150"
-                              Foreground="Black"
-                              Background="Gold"
-                              Checked="SoundToggle_Checked"
-                              Unchecked="SoundToggle_Unchecked"/>
+            <!-- Toggle Buttons -->
+            <StackPanel Orientation="Vertical">
+
+                <Button Content="🔊 Son"
+                      Command="{Binding SoundToggleCommand}"
+                      Background="{Binding Settings.IsSoundEnabled, Converter={StaticResource BooleanToBrushConverter}}"
+                      Style="{StaticResource ToggleButtonStyle}"/>
+
+                <Button Content="📈 Offres Intelligentes"
+                      Command="{Binding SmartOfferToggleCommand}"
+                      Background="{Binding Settings.IsSmartOfferEnabled, Converter={StaticResource BooleanToBrushConverter}}"
+                      Style="{StaticResource ToggleButtonStyle}"/>
+
+                <Button Content="🎰 Générateur Intelligent"
+                      Command="{Binding SmartPrizesGeneratorToggleCommand}"
+                      Background="{Binding Settings.IsSmartPrizeGeneratorEnabled, Converter={StaticResource BooleanToBrushConverter}}"
+                      Style="{StaticResource ToggleButtonStyle}"/>
+
             </StackPanel>
+
         </StackPanel>
 
         <!-- Save Button -->
-        <Button Content="💾 Terminer"
-                Width="250" Height="60"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                FontSize="20"
-                Style="{StaticResource ConfirmButtonStyle}"
-                Grid.Row="2"
-                Click="SaveSettings_Click"/>
+        <Button Content="⬅️ Retour au Menu"
+            Width="250" Height="60"
+            Style="{StaticResource CancelButtonStyle}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Grid.Row="2"
+            FontSize="18"
+            Command="{Binding SaveSettingsCommand}"/>
     </Grid>
+
 </UserControl>

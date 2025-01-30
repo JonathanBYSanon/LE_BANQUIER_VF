@@ -7,7 +7,7 @@
              mc:Ignorable="d" ClipToBounds="True">
 
     <!-- Reusable user control that represent the host -->
-    <Border Background="#493971" Margin="0,20,0,0">
+    <Border Background="#493971">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -18,10 +18,10 @@
             <!-- Image that popup to notify about a new message-->
             <Image x:Name="NotifyImage"
                    Source="pack://application:,,,/Resource/Image/NewMessage.png"
-                   Width="100" Height="100"
+                   Width="75" Height="75"
                    Opacity="0"
-                   HorizontalAlignment="Left" 
-                   VerticalAlignment="Top">
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center">
                 <Image.RenderTransform>
                     <ScaleTransform ScaleX="1" ScaleY="1" />
                 </Image.RenderTransform>

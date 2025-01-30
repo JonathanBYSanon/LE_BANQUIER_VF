@@ -9,7 +9,7 @@
     <Grid>
         
         <!-- Background color changes based on IsAvailable -->
-        <Border x:Name="PrizeBorder" BorderThickness="2" Margin="5" 
+        <Border x:Name="PrizeBorder" BorderThickness="2"
         BorderBrush="#493971" CornerRadius="10" Opacity="0.5"
         RenderTransformOrigin="0.5,0.5">
 
@@ -84,7 +84,7 @@
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Setter Property="Foreground" Value="Gold" />
-                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="FontSize" Value="25"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsAvailable}" Value="False">
                             <DataTrigger.EnterActions>

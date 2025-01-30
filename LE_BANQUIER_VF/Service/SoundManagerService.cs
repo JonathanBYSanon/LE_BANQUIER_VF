@@ -10,7 +10,7 @@ namespace LE_BANQUIER_VF.Service
     /// </summary>
     public class SoundManagerService
     {
-        private static bool _isMuted = false;
+        private static bool _isMuted;
         public static bool IsMuted
         {
             get => _isMuted;

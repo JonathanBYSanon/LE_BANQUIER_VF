@@ -1,36 +1,14 @@
-﻿using LE_BANQUIER_VF.Model;
-using System.IO;
-using System.Text.Json;
-
+﻿using LE_BANQUIER_VF.Core;
+using LE_BANQUIER_VF.Model;
 
 namespace LE_BANQUIER_VF.Service
 {
     /// <summary>
-    /// Service to manage the settings of the game loaded from a json file or saved to it
+    /// Static class for managing game settings.
     /// </summary>
-    public static class SettingService
+    public class SettingService
     {
-        private const string SettingsFile = "settings.json";
+        public static GameSetting Settings { get; set; } = new GameSetting();
 
-        public static GameSetting LoadSettings()
-        {
-            if (File.Exists(SettingsFile))
-            {
-                var json = File.ReadAllText(SettingsFile);
-                return JsonSerializer.Deserialize<GameSetting>(json) ?? GameSetting.Default;
-            }
-            return GameSetting.Default;
-        }
-
-        public static void SaveSettings(GameSetting settings)
-        {
-            if(settings.MaxAmount < 10)
-            {
-                settings.MaxAmount = 10;
-            }
-
-            var json = JsonSerializer.Serialize(settings, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(SettingsFile, json);
-        }
     }
 }

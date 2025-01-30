@@ -19,17 +19,17 @@ namespace LE_BANQUIER_VF.Service.converter
             {
                
                 if (GameProgressService.Instance.Round == 24)
-                    return "Après cette malette, ce sera la Dernière Offre !!!";
+                    return "Dernier tour avec offre";
 
-                    return "L'offre arrive après cette malette !!!";
+                    return "Tour avec offre";
             }
             if (GameProgressService.Instance.Round == 0)
                 return "Choisis ta malette !!!";
 
             if(GameProgressService.Instance.Round == 25)
-                return "Echange ou garde ta malette !!!";
+                return "Echange ou garde ta malette";
 
-            return $"La prochaine offre arrive aprés : {GameProgressService.Instance.NextOfferRound - GameProgressService.Instance.Round+1} malettes"; // Retourne une chaîne vide si ce n'est pas un round spécial
+            return $"Offre aprés : {GameProgressService.Instance.NextOfferRound - GameProgressService.Instance.Round+1} malettes";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
