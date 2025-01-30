@@ -16,6 +16,8 @@
   - Set the maximum prize amount.
   - Personalize the player's name.
   - Toggle sound effects and background music on/off.
+  - Toggle smart and simple prize generator
+  - Toggle smart and simple offer
 
 - **User-Friendly Interface:**
   - Easy-to-navigate main menu with options to start a new game, view rules, adjust settings, and exit the game.
