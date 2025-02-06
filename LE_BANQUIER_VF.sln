@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35431.28
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LE_BANQUIER_VF", "LE_BANQUIER_VF\LE_BANQUIER_VF.csproj", "{DD93C128-2881-40CF-8157-87B4B8C2DD78}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LE_BANQUIER_VF_SETUP", "LE_BANQUIER_VF_SETUP\LE_BANQUIER_VF_SETUP.vdproj", "{1CF9A8B1-EB14-4722-8918-CBCBAAE64713}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{DD93C128-2881-40CF-8157-87B4B8C2DD78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD93C128-2881-40CF-8157-87B4B8C2DD78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD93C128-2881-40CF-8157-87B4B8C2DD78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CF9A8B1-EB14-4722-8918-CBCBAAE64713}.Debug|Any CPU.ActiveCfg = Debug
+		{1CF9A8B1-EB14-4722-8918-CBCBAAE64713}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
