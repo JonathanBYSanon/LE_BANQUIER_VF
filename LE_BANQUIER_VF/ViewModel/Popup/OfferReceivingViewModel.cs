@@ -1,5 +1,6 @@
 ﻿using LE_BANQUIER_VF.Core;
 using LE_BANQUIER_VF.Model;
+using LE_BANQUIER_VF.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,11 +36,9 @@ namespace LE_BANQUIER_VF.ViewModel.Popup
         /// <param name="parameter"></param>
         private void AcceptOffer(object parameter)
         {
+            GameProgressService.Instance.isOverOnOffer = true;
             var fadeOut = (Storyboard)DialogWindow.Resources["FadeOutStoryboard"];
-            fadeOut.Completed += (s, _) =>
-            {
-                DialogWindow.DialogResult = true; // Ferme la fenêtre après l'animation
-            };
+            fadeOut.Completed += (s, _) => DialogWindow.Close();
             fadeOut.Begin(DialogWindow);
         }
         /// <summary>
@@ -49,10 +48,7 @@ namespace LE_BANQUIER_VF.ViewModel.Popup
         private void RefuseOffer(object parameter)
         {
             var fadeOut = (Storyboard)DialogWindow.Resources["FadeOutStoryboard"];
-            fadeOut.Completed += (s, _) =>
-            {
-                DialogWindow.DialogResult = false; // Ferme la fenêtre après l'animation
-            };
+            fadeOut.Completed += (s, _) => DialogWindow.Close();
             fadeOut.Begin(DialogWindow);
         }
     }

@@ -135,10 +135,12 @@ namespace LE_BANQUIER_VF.ViewModel
         private void onPlayerBriefcaseSelection()
         {
             PlayerBriefcaseSelectionDialag dialog = new PlayerBriefcaseSelectionDialag(Briefcases,Player,SelectedBriefcase,Host);
-            bool result = dialog.ShowDialog() ?? false;
+            dialog.ShowDialog() ;
 
-            Host.Message = MessageGeneratorService.GetBriefcaseSelectionReaction(SelectedBriefcase.Number, result);
-            if (result) nextRound();
+            bool isConfirmed = (Player.Briefcase == SelectedBriefcase) && Briefcases.Count == 25;
+
+            Host.Message = MessageGeneratorService.GetBriefcaseSelectionReaction(SelectedBriefcase.Number, isConfirmed);
+            if (isConfirmed) nextRound();
         }
         /// <summary>
         /// Method to allow the player to eliminate a briefcase, it's called from round 1 to 24
@@ -158,9 +160,9 @@ namespace LE_BANQUIER_VF.ViewModel
         {
             Banker.Offer = OfferCalculatorService.CalculateOffer(getRemainingPrizes());
             OfferReceivingDialog dialog2 = new OfferReceivingDialog(Banker, Host);
-            bool result = dialog2.ShowDialog() ?? false;
+            dialog2.ShowDialog();
 
-            if (result) onEndGame();
+            if (GameProgressService.Instance.isOverOnOffer) onEndGame();
         }
 
         /// <summary>
@@ -194,13 +196,13 @@ namespace LE_BANQUIER_VF.ViewModel
             if(GameProgressService.Instance.IsOfferRound)
             {
                 OfferTransitionDialog dialog6 = new OfferTransitionDialog(Host);
-                if(dialog6.ShowDialog() ?? false)
-                {
-                    onOfferMaking();
-                    if (isOver) return;
+                dialog6.ShowDialog();
+                
+                onOfferMaking();
+                if (isOver) return;
 
-                    if (GameProgressService.Instance.Round < 24) Host.Message = MessageGeneratorService.GetPlayerDecisionReaction();
-                }
+                if (GameProgressService.Instance.Round < 24) Host.Message = MessageGeneratorService.GetPlayerDecisionReaction();
+
             }
             else if(GameProgressService.Instance.Round != 0)
             {

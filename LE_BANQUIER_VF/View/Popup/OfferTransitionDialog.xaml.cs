@@ -35,10 +35,7 @@ namespace LE_BANQUIER_VF.View.Popup
         {
             SoundManagerService.Instance.StopEffect();
             var fadeOut = (Storyboard)Resources["FadeOutStoryboard"];
-            fadeOut.Completed += (s, _) =>
-            {
-                this.DialogResult = true;
-            };
+            fadeOut.Completed += (s, _) => this.Close();
             fadeOut.Begin(this);
             
         }

@@ -60,6 +60,8 @@ namespace LE_BANQUIER_VF.Service
         public bool IsOfferRound => OfferRounds[NextOfferIndex] == Round;
         public int NextOfferRound => OfferRounds[NextOfferIndex];
 
+        public bool isOverOnOffer = false;
+
         // Advance to the next round
         public void NextRound()
         {
@@ -77,6 +79,7 @@ namespace LE_BANQUIER_VF.Service
         {
             Round = 0;
             NextOfferIndex = 0;
+            isOverOnOffer = false;
         }
     }
 }

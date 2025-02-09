@@ -42,10 +42,7 @@ namespace LE_BANQUIER_VF.ViewModel.Popup
                 if(Briefcases.Remove(Briefcase))
                 {
                     var fadeOut = (Storyboard)DialogWindow.Resources["FadeOutStoryboard"];
-                    fadeOut.Completed += (s, _) =>
-                    {
-                        DialogWindow.DialogResult = true; // Ferme la fenêtre après l'animation
-                    };
+                    fadeOut.Completed += (s, _) => DialogWindow.Close();
                     fadeOut.Begin(DialogWindow);
                 }
             }
@@ -58,10 +55,7 @@ namespace LE_BANQUIER_VF.ViewModel.Popup
         private void CloseWindow(object parameter)
         {
             var fadeOut = (Storyboard)DialogWindow.Resources["FadeOutStoryboard"];
-            fadeOut.Completed += (s, _) =>
-            {
-                DialogWindow.DialogResult = !(Player.Briefcase == null); // Ferme la fenêtre après l'animation
-            };
+            fadeOut.Completed += (s, _) => DialogWindow.Close();
             fadeOut.Begin(DialogWindow);
         }
     }

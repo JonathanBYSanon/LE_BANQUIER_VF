@@ -72,7 +72,7 @@ namespace LE_BANQUIER_VF.Model
             MaxAmount = 1000;
             PlayerName = "Etudiant";
             IsSoundEnabled = true;
-            IsSmartOfferEnabled = false;
+            IsSmartOfferEnabled = true;
             IsSmartPrizeGeneratorEnabled = false;
         }
     }

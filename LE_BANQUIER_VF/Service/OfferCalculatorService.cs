@@ -44,9 +44,10 @@ namespace LE_BANQUIER_VF.Service
             int lowestPrize = prizes.Min();
 
             // Risk factor: Increase gradually as the game progresses
-            double riskFactor = round < 12 ? 0.1 :
-                                round < 21 ? 0.4 :
-                                0.75;  // Increase offer gradually
+            double riskFactor = round == 6 ? 0.1 :
+                                round == 11 ? 0.2 :
+                                round < 21 ? 0.5 :
+                                0.8;  // Increase offer gradually
 
             // Psychological factor to simulate negotiations (random small variation)
             double psychologicalFactor = (new Random().NextDouble() * 0.2) + 0.9;  // Between 0.9 and 1.1
