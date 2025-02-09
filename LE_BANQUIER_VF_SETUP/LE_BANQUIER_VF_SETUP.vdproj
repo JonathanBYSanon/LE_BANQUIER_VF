@@ -220,12 +220,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7CD4F743C15F318281F62AB7C2DF97E1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1007DDA957CD432F9A6DED7715F8D672"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -283,6 +277,12 @@
         "OwnerKey" = "8:_78EC930A734C65726DE84E9233236D50"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7CD4F743C15F318281F62AB7C2DF97E1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -301,6 +301,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -317,6 +325,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -985,15 +1009,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:LE_BANQUIER_VF"
-        "ProductCode" = "8:{47B71169-D01E-4469-957E-2C6699BBADE6}"
-        "PackageCode" = "8:{6AF6ADCD-4B88-48C4-B4D3-98CB2719475A}"
+        "ProductCode" = "8:{9789062E-E055-4535-AB24-EE39B7A3F2CF}"
+        "PackageCode" = "8:{D5149B39-51A3-40F0-B313-5ACD8DB353D7}"
         "UpgradeCode" = "8:{7D2A7C4A-88E2-42BE-B422-94A3405CCCD7}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.2"
         "Manufacturer" = "8:AE_GAMES"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
